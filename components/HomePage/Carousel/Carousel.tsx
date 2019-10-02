@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useSpring, animated, config } from 'react-spring';
 import {
   faMediumM,
   faFacebook,
@@ -15,10 +16,43 @@ import {
 } from '@fortawesome/free-brands-svg-icons';
 import s from './Carousel.scss';
 
-const Carousel = () => {
+const Carousel: React.FunctionComponent = () => {
+  const [items] = useState([
+    'GraphQL changed the way we create software',
+    'Learn about GraphQL language for free in the browser',
+    'Learn how to be Lead frontend engineer with GraphQL driven React and Apollo applications'
+  ]);
+  const [fadeIn, setFadeIn] = useState(true);
+  const [index, setIndex] = useState(0);
+
+  const heightProps = useSpring({
+    config: config.slow,
+    from: { height: '0px' },
+    to: { height: '700px' }
+  });
+  const opacityProps = useSpring({
+    config: config.molasses,
+    delay: 400,
+    from: { opacity: 0 },
+    to: { opacity: 1 }
+  });
+
+  const fadingTextProps = useSpring({
+    config: { duration: 1000 },
+    delay: fadeIn ? 0 : 4000,
+    from: fadeIn ? { opacity: 0 } : { opacity: 1 },
+    to: fadeIn ? { opacity: 1 } : { opacity: 0 },
+    onRest: () => {
+      setFadeIn(!fadeIn);
+      if (!fadeIn) {
+        index === items.length - 1 ? setIndex(0) : setIndex(index + 1);
+      }
+    }
+  });
+
   return (
-    <section className={s.Carousel}>
-      <div className={s.Carousel__Wrapper}>
+    <animated.section className={s.Carousel} style={heightProps}>
+      <animated.div className={s.Carousel__Wrapper} style={opacityProps}>
         <div className={s.Carousel__Row}>
           <div className={s.Carousel__LeftColumn}>
             <div>
@@ -43,7 +77,18 @@ const Carousel = () => {
                   />
                 </picture>
               </a>
-
+              <animated.div style={fadingTextProps}>
+                <p
+                  style={{
+                    height: '60px',
+                    display: 'block',
+                    textAlign: 'center',
+                    color: 'white'
+                  }}
+                >
+                  {items[index]}
+                </p>
+              </animated.div>
               <div className={s.Carousel__TechnologyStack}>
                 <div className={s.Carousel__Technology}>
                   <FontAwesomeIcon icon={faJsSquare} />
@@ -143,8 +188,9 @@ const Carousel = () => {
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </animated.div>
+    </animated.section>
   );
 };
+
 export default Carousel;

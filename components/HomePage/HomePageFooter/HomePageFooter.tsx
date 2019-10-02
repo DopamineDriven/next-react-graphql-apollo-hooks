@@ -13,7 +13,7 @@ import {
 } from '@fortawesome/free-brands-svg-icons';
 import s from './HomePageFooter.scss';
 
-export const HomePageFooter = () => {
+const HomePageFooter: React.FunctionComponent = () => {
   return (
     <footer className={s.Footer}>
       <div className={s.Footer__Wrapper}>
@@ -135,7 +135,7 @@ export const HomePageFooter = () => {
           </div>
         </div>
         <div className={s.Footer__Bottom}>
-          <LazyLoad heigh={80}>
+          <LazyLoad height={80}>
             <a
               title="Atheros Intelligence"
               aria-label="Atheros Intelligence"

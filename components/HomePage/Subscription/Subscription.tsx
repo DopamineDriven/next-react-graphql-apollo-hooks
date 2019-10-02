@@ -17,7 +17,7 @@ const handleSubsribe = async ({ values, subscribeMutation, resetForm }) => {
   }
 };
 
-const Subscription = () => {
+const Subscription: React.FunctionComponent = () => {
   const [subscribeMutation] = useMutation(SUSCRIBE_MUTATION, {
     update: (cache, { data: { subscribe } }) => {
       const { subscriptions } = cache.readQuery({ query: SUBSCRIPTIONS_QUERY });
@@ -31,7 +31,7 @@ const Subscription = () => {
   });
 
   return (
-    <div className={s.Subscription} name="subscription">
+    <div className={s.Subscription}>
       <div className={s.Subscription__SubscriptionWrapper}>
         <div>
           <h2>

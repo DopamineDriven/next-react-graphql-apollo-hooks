@@ -40,6 +40,8 @@ const configureWebpack = config => {
     })
   );
 
+  config.resolve.extensions = config.resolve.extensions.concat(['.ts', '.tsx']);
+
   return config;
 };
 
