@@ -5,7 +5,7 @@ import flush from 'styled-jsx/server';
 import MetaData from '../components/Common/MetaData/MetaData';
 
 class MyDocument extends Document {
-  static getInitialProps({ renderPage }) {
+  static async getInitialProps({ renderPage }) {
     const { html, head, errorHtml, chunks } = renderPage();
     const styles = flush();
     return { html, head, errorHtml, chunks, styles };

@@ -4,7 +4,7 @@ import get from 'lodash.get';
 import SUBSCRIPTIONS_QUERY from './Subscriptions.graphql';
 import s from './SubscriptionTable.scss';
 
-const SubscriptionsTable = () => {
+const SubscriptionsTable: any = () => {
   const { data, loading, error } = useQuery(SUBSCRIPTIONS_QUERY);
 
   if (loading) return 'Loading...';

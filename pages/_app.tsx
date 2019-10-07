@@ -8,14 +8,20 @@ import { NODE_ENV, CUSTOM_ENV } from '../config/config';
 import withApolloClient from '../lib/with-apollo-client';
 import globalStyle from '../theme/global.scss';
 
-if (CUSTOM_ENV === 'production') {
-  Router.onRouteChangeComplete = url => {
-    pageview(url);
-  };
+interface MyAppProps {
+  Component: any,
+  pageProps: any,
+  apolloClient: any
 }
 
-class MyApp extends App {
-  componentDidMount() {
+if (CUSTOM_ENV === 'production') {
+  Router.events.on('onRouteChangeComplete', (url: string) => {
+    pageview(url);
+  });
+}
+
+class MyApp extends App<MyAppProps> {
+  componentDidMount(): void {
     import('webfontloader').then(WebFont =>
       WebFont.load({
         google: {
@@ -30,6 +36,8 @@ class MyApp extends App {
 
   render() {
     const { Component, pageProps, apolloClient } = this.props;
+
+    console.log(Component, pageProps, apolloClient);
 
     return (
       <Container>
