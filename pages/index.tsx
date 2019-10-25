@@ -1,6 +1,6 @@
 import React from 'react';
 import MetaDataCustom from '../components/Common/MetaDataCustom/MetaDataCustom';
-import Carousel from '../components/HomePage/Carousel/Carousel';
+import CarouselHooks from '../components/HomePage/CarouselHooks/CarouselHooks';
 import Subscription from '../components/HomePage/Subscription/Subscription';
 import SubscriptionsTable from '../components/HomePage/SubscriptionsTable/SubscriptionsTable';
 import Footer from '../components/HomePage/HomePageFooter/HomePageFooter';
@@ -14,7 +14,7 @@ const HomePage: React.StatelessComponent = () => (
       description="Learn how to build modern Javascript apps with GraphQL courses and articles, with a focus on technologies such as GraphQL, React, Apollo and Node.js."
     />
     <header>
-      <Carousel />
+      <CarouselHooks />
     </header>
     <main>
       <SubscriptionsTable />

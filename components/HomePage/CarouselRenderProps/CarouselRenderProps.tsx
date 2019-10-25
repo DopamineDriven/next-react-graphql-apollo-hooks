@@ -14,7 +14,7 @@ import {
   faJsSquare,
   faNode
 } from '@fortawesome/free-brands-svg-icons';
-import s from './Carousel.scss';
+import s from './CarouselRenderProps.scss';
 
 const Carousel: React.FunctionComponent = () => {
   const [items] = useState([

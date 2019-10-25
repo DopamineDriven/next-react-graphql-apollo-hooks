@@ -37,8 +37,6 @@ class MyApp extends App<MyAppProps> {
   render() {
     const { Component, pageProps, apolloClient } = this.props;
 
-    console.log(Component, pageProps, apolloClient);
-
     return (
       <Container>
         <ApolloProvider client={apolloClient}>
